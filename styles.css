@@ -1,3 +1,26 @@
+body{
+    display: flex;
+    flex-direction: column;
+    
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+button{
+    width: 100px;
+    height: 100px;
+}
 .grid{
     display: grid;
     grid-template-columns: repeat(16,1fr);
@@ -9,9 +32,19 @@
     height: 960px;
 }
 .grid-bg{
-    background-color: aqua;
+    background-color: white;
 }
 .pixel{
 
 }
-
+.footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    margin: 0;
+}
+.git{
+    height: 30px;
+    
+}
