@@ -6,7 +6,6 @@ const colorWindow = document.querySelector(".colorWindow");
 const rainbowButton = document.querySelector(".rainbowBtn");
 
 let color = colorWindow.value;
-let bufferColor = "";
 let mouseClick = false;
 let rainbow = false;
 let eraserOn = false;
@@ -22,13 +21,11 @@ function start(){
    rainbowButton.addEventListener('click',function(e){
       if(rainbow == true){
          rainbow = false;
-         color = bufferColor;
          rainbowButton.classList.remove("focus");
       }
       else{
          rainbow = true;
          eraserOn = false;
-         bufferColor = color;
          rainbowButton.classList.add("focus");
          eraser.classList.remove("focus");
       }
@@ -41,15 +38,12 @@ function start(){
    eraser.addEventListener('click',function(e){
      
       if(eraserOn == true){
-         color = bufferColor;
          eraser.classList.remove("focus");
          eraserOn = false;
       }
       else{
          eraserOn = true;
          rainbow = false;
-         bufferColor = color;
-         erase();
          eraser.classList.add("focus");
          rainbowButton.classList.remove("focus");
 
@@ -62,10 +56,6 @@ function start(){
    createGrid(256);
 }
 
-function selectColor(){
-   color = colorWindow.value;
-   bufferColor = color;
-}
 function changeColor(e){  
    color = colorWindow.value;
    if(e.type === "mouseover" && !mouseClick){return}
@@ -103,13 +93,9 @@ function changeGrid(){
 
    pixels.forEach((e) => e.parentNode.removeChild(e));
    createGrid(numberOfpixels);
-   color = bufferColor;
+   color = colorWindow.value
 }
 
-function erase(){
-   eraserOn = true;
-   color = '#ffffff';
-}
 function clear(){
    eraserOn = false;
    rainbow = false;
@@ -119,7 +105,7 @@ function clear(){
    divs.forEach(div => {
       div.style.backgroundColor = "#ffffff";
    });
-   color = bufferColor;
+   color = colorWindow.value;
 }
 
 const getRandomNumber  = (min,max)=>{
