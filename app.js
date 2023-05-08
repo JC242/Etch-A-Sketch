@@ -7,15 +7,17 @@ const colorWindow = document.querySelector(".colorWindow");
 
 let color = "#000000";
 let bufferColor = "";
+let mouseClick = false;
+
+document.body.onmousedown = () => {mouseClick = true}
+document.body.onmouseup = () => {mouseClick = false}
 
 start();
 
 function start(){
  
-
-
    ColorButton.addEventListener('click',function(e){
-      changeColor();
+      selectColor();
    })
 
    changeSize.addEventListener('click',function(e){
@@ -32,9 +34,13 @@ function start(){
    createGrid(256);
 }
 
-function changeColor(){
+function selectColor(){
    color = colorWindow.value;
    bufferColor = color;
+}
+function changeColor(e){  
+   if(e.type === "mouseover" && !mouseClick){return}
+   e.target.style.backgroundColor = color;
 }
 
 function createGrid(pixels){
@@ -42,12 +48,8 @@ function createGrid(pixels){
       let newDiv = document.createElement('div');
       newDiv.id = 'pixel'+i;
       newDiv.classList.add("pixel");
-      newDiv.addEventListener("mousedown",function(e){
-         newDiv.style.backgroundColor = color;
-      })
-      newDiv.addEventListener("mouseover",function(e){
-         newDiv.style.backgroundColor = color;
-      })
+      newDiv.addEventListener("mouseover", changeColor)
+      newDiv.addEventListener("mousedown", changeColor)
       grid.appendChild(newDiv);
    }
 }
