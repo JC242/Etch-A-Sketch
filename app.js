@@ -108,13 +108,6 @@ function changeGrid(){
 function erase(){
    eraserOn = true;
    color = '#ffffff';
-   // if(color !== '#ffffff'){
-   //    bufferColor = color;
-   //    color = '#ffffff';
-   // }
-   // else{
-   //    color = bufferColor;
-   // }
 }
 function clear(){
    const divs = document.querySelectorAll(".pixel");
