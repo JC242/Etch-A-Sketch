@@ -10,6 +10,12 @@ body{
     justify-content: center;
     gap: 100px;
 }
+.colorWindow{
+    height: 250px;
+    width: 250px;
+    border: solid black;
+    margin: 20px; 
+}
 .buttons{
     display: flex;
     flex-direction: column;
@@ -33,9 +39,6 @@ button{
 }
 .grid-bg{
     background-color: white;
-}
-.pixel{
-
 }
 .footer{
     display: flex;

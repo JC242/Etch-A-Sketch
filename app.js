@@ -2,12 +2,22 @@ const grid = document.querySelector(".grid");
 const eraser = document.querySelector(".eraser");
 const clearbutton = document.querySelector(".clear");
 const changeSize = document.querySelector(".changeButton");
+const ColorButton = document.querySelector(".changeColor");
+const colorWindow = document.querySelector(".colorWindow");
 
-let color = "black";
+let color = "#000000";
+let bufferColor = "";
 
 start();
 
 function start(){
+ 
+
+
+   ColorButton.addEventListener('click',function(e){
+      changeColor();
+   })
+
    changeSize.addEventListener('click',function(e){
       changeGrid();
    })
@@ -22,11 +32,19 @@ function start(){
    createGrid(256);
 }
 
+function changeColor(){
+   color = colorWindow.value;
+   bufferColor = color;
+}
+
 function createGrid(pixels){
    for(let i = 0; i < pixels; i++){
       let newDiv = document.createElement('div');
       newDiv.id = 'pixel'+i;
       newDiv.classList.add("pixel");
+      newDiv.addEventListener("mousedown",function(e){
+         newDiv.style.backgroundColor = color;
+      })
       newDiv.addEventListener("mouseover",function(e){
          newDiv.style.backgroundColor = color;
       })
@@ -36,38 +54,37 @@ function createGrid(pixels){
 
 function changeGrid(){
 
-   let colums = prompt("Please enter number columns, Max 100", 1);
-   while(colums > 100){
-      colums = prompt("Please enter number columns, Max 100" , 1);
+   let size = prompt("Please enter size of the grid, Max 100", 1);
+   while(size > 100){
+      size = prompt("Please enter number columns, Max 100" , 1);
    }
-   let rows = prompt("Please enter number of rows, Max 100",1);
-   while(rows > 100){
-      rows = prompt("Please enter number of rows, Max 100",1);
-   }
-   let numberOfpixels = colums * rows;
-   grid.style.gridTemplateColumns = `repeat(${colums},1fr)`;
-   grid.style.gridTemplateRows = `repeat(${rows},1fr)`;
+   
+   let numberOfpixels = size * size;
+   grid.style.gridTemplateColumns = `repeat(${size},1fr)`;
+   grid.style.gridTemplateRows = `repeat(${size},1fr)`;
 
    const pixels = document.querySelectorAll(".pixel");
 
    pixels.forEach((e) => e.parentNode.removeChild(e));
    createGrid(numberOfpixels);
-   color = 'black';
+   color = bufferColor;
 }
 
 function erase(){
-   if(color != 'white'){
-      color = 'white';
+
+   if(color !== '#ffffff'){
+      bufferColor = color;
+      color = '#ffffff';
    }
    else{
-      color = 'black';
+      color = bufferColor;
    }
 }
 function clear(){
    const divs = document.querySelectorAll(".pixel");
    divs.forEach(div => {
-      div.style.backgroundColor = "white";
-      color = "black";
+      div.style.backgroundColor = "#ffffff";
+      color = bufferColor;
    });
 }
 
