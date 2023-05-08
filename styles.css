@@ -24,14 +24,24 @@ body{
     gap: 10px;
 }
 button{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    background-color: black;
+    color: white;
+}
+.active:active{
+    background-color: orange;
+}
+.focus{
+    background-color: orange;
 }
 .grid{
     display: grid;
     grid-template-columns: repeat(16,1fr);
     grid-template-rows: repeat(16,1fr);
     border: solid black;
+    box-shadow: 10px 10px;
 }
 .grid-size{
     width: 960px;
@@ -49,5 +59,4 @@ button{
 }
 .git{
     height: 30px;
-    
 }
