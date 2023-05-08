@@ -1,12 +1,11 @@
 const grid = document.querySelector(".grid");
-const eraser = document.querySelector(".eraser");
-const clearbutton = document.querySelector(".clear");
-const changeSize = document.querySelector(".changeButton");
-const ColorButton = document.querySelector(".changeColor");
+const eraser = document.querySelector(".eraserBtn");
+const clearbutton = document.querySelector(".clearBtn");
+const changeSize = document.querySelector(".gridBtn");
 const colorWindow = document.querySelector(".colorWindow");
-const rainbowButton = document.querySelector(".rainbow");
+const rainbowButton = document.querySelector(".rainbowBtn");
 
-let color = "#000000";
+let color = colorWindow.value;
 let bufferColor = "";
 let mouseClick = false;
 let rainbow = false;
@@ -20,9 +19,6 @@ start();
 
 function start(){
  
-   ColorButton.addEventListener('click',function(e){
-      selectColor();
-   })
    rainbowButton.addEventListener('click',function(e){
       if(rainbow == true){
          rainbow = false;
@@ -31,9 +27,10 @@ function start(){
       }
       else{
          rainbow = true;
+         eraserOn = false;
          bufferColor = color;
          rainbowButton.classList.add("focus");
-
+         eraser.classList.remove("focus");
       }
    })
 
@@ -50,9 +47,11 @@ function start(){
       }
       else{
          eraserOn = true;
+         rainbow = false;
          bufferColor = color;
          erase();
          eraser.classList.add("focus");
+         rainbowButton.classList.remove("focus");
 
       }
    })
@@ -68,10 +67,12 @@ function selectColor(){
    bufferColor = color;
 }
 function changeColor(e){  
-   console.log(rainbow);
+   color = colorWindow.value;
    if(e.type === "mouseover" && !mouseClick){return}
    if(rainbow == true){
       color = RGB2HTML(getRandomNumber(0,256),getRandomNumber(0,256),getRandomNumber(0,256));
+   }else if(eraserOn == true){
+      color = '#ffffff';
    }
       e.target.style.backgroundColor = color;
    
@@ -110,11 +111,15 @@ function erase(){
    color = '#ffffff';
 }
 function clear(){
+   eraserOn = false;
+   rainbow = false;
+   eraser.classList.remove("focus");
+   rainbowButton.classList.remove("focus");
    const divs = document.querySelectorAll(".pixel");
    divs.forEach(div => {
       div.style.backgroundColor = "#ffffff";
-      color = bufferColor;
    });
+   color = bufferColor;
 }
 
 const getRandomNumber  = (min,max)=>{
