@@ -40,10 +40,16 @@ button{
     color: black;
 }
 .active:active{
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
     background-color: orange;
     color:white;
 }
 .focus{
+    transform: scale(1.1);
+    border-color: #ffc600;
+    box-shadow: 0 0 1rem #ffc600;
     background-color: orange;
     color:white
 }
