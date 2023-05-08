@@ -1,12 +1,17 @@
-.container{
+.grid{
     display: grid;
     grid-template-columns: repeat(16,1fr);
     grid-template-rows: repeat(16,1fr);
+    border: solid black;
 }
 .grid-size{
-    height: 1000px;
-    width: 1000px;
+    width: 960px;
+    height: 960px;
 }
 .grid-bg{
     background-color: aqua;
 }
+.pixel{
+
+}
+
