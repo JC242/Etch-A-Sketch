@@ -3,6 +3,13 @@ body{
     flex-direction: column;
     
 }
+.title{
+    display: flex;
+    font-size: 72px;
+    justify-content: center;
+    align-items: center;
+    margin:30px
+}
 .container{
     display: flex;
     flex-direction: row;
@@ -44,8 +51,8 @@ button{
     box-shadow: 10px 10px;
 }
 .grid-size{
-    width: 960px;
-    height: 960px;
+    width: 500px;
+    height: 500px;
 }
 .grid-bg{
     background-color: white;
