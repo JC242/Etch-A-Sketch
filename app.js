@@ -45,7 +45,7 @@ function start(){
       else{
          blackOn = true;
          eraserOn = false;
-         rainbowOn = false;
+         rainbow = false;
          rainbowButton.classList.remove("focus");
          eraser.classList.remove("focus");
          blackButton.classList.add("focus");
