@@ -1,10 +1,11 @@
 const grid = document.querySelector(".grid");
 const eraser = document.querySelector(".eraserBtn");
 const clearbutton = document.querySelector(".clearBtn");
-const changeSize = document.querySelector(".gridBtn");
+const changeSize = document.querySelector(".sizerange");
 const colorWindow = document.querySelector(".colorWindow");
 const rainbowButton = document.querySelector(".rainbowBtn");
 const blackButton = document.querySelector(".blackBtn");
+const labelsize = document.querySelector(".size");
 
 let color = colorWindow.value;
 let mouseClick = false;
@@ -13,7 +14,7 @@ let eraserOn = false;
 let blackOn = false;
 let counter = 0;
 
-
+labelsize.textContent = changeSize.value;
 document.body.onmousedown = () => {mouseClick = true}
 document.body.onmouseup = () => {mouseClick = false}
 
@@ -52,8 +53,9 @@ function start(){
       }
    })
 
-   changeSize.addEventListener('click',function(e){
-      changeGrid();
+   changeSize.addEventListener('input',function(e){
+      labelsize.textContent = changeSize.value;
+      changeGrid(changeSize.value);
    })
 
    eraser.addEventListener('click',function(e){
@@ -109,13 +111,8 @@ function createGrid(pixels){
    }
 }
 
-function changeGrid(){
-
-   let size = prompt("Please enter size of the grid, Max 100", 1);
-   while(size > 100){
-      size = prompt("Please enter number columns, Max 100" , 1);
-   }
-   
+function changeGrid(size){
+  
    let numberOfpixels = size * size;
    grid.style.gridTemplateColumns = `repeat(${size},1fr)`;
    grid.style.gridTemplateRows = `repeat(${size},1fr)`;
